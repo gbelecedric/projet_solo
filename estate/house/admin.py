@@ -168,7 +168,7 @@ class MaisonAdmin(admin.ModelAdmin):
         'taxe_include',
       
     )
-    raw_id_fields = ('specification',)
+    #raw_id_fields = ('specification',)
 
 
 def _register(model, admin_class):
