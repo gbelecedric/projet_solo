@@ -1,0 +1,204 @@
+{% extends "bases/base_pages.html" %}
+{% block title %} {% endblock title %}
+{% block content %}
+            
+        
+<!-- Page top section -->
+{% for b in image %} 
+ {% if forloop.counter == 1 %}          
+<section class="page-top-section set-bg" data-setbg="{{b.about.url}}">
+	{% endif %}
+	{% endfor %}
+	
+	{% for b in about %} 
+ {% if forloop.counter == 1 %} 
+ 
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="page-top-text text-white">
+						<h2>PROPERTY</h2>
+						<p>{{b.text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	{% endfor %}
+	<div class="hero-social-warp">
+		<div class="hero-social">
+				{% for l in lien %}
+				{% if forloop.counter == 1 %}
+				<a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+				<a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+				<a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+				<a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+				<a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+				{% endif %}
+				{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- Page top section end -->
+
+<!-- Property details section -->
+<section class="property-details-section spad">
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-6 col-lg-7">
+				<div class="property-details">
+					<h2>{{house.nom}}</h2>
+					<div class="property-info">
+						<h6>Lot Size</h6>
+						<div class="pi-icon">
+							<i class="flaticon-151-plans"></i>
+							<span>{{house.size}} sqft </span>
+						</div>
+					</div>
+					<div class="property-info">
+						<h6>Beds</h6>
+						<div class="pi-icon">
+							<i class="flaticon-151-beds"></i>
+							<span>{{house.beds}}</span>
+						</div>
+					</div>
+					<div class="property-info">
+						<h6>Baths</h6>
+						<div class="pi-icon">
+							<i class="flaticon-151-relax"></i>
+							<span>{{house.baths}}</span>
+						</div>
+					</div>
+					<div class="property-info">
+						<h6>Garage</h6>
+						<div class="pi-icon">
+							<i class="flaticon-151-transportation"></i>
+							<span>{{house.Garage}}</span>
+						</div>
+					</div>
+				</div>
+				<p>{{house.description}}</p>
+			</div>
+			<div class="col-xl-6 col-lg-5 text-lg-right text-left">
+				<div class="property-price">
+					<h2>${{house.price}}</h2>
+					{% if house.taxe_include %}
+					<p>(taxes excluded)</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Property details section end -->
+
+<!-- Property features slider -->
+<div class="property-features-slider owl-carousel">
+	<a href="{{house.vues.image.url}}" class="img-popup-gallery">
+		<img src="{{house.vues.image.url}}" alt="">
+		<i class="flaticon-151-reading-glasses"></i>
+	</a>
+	<a href="{{house.interiors.image.url}}" class="img-popup-gallery">
+		<img src="{{house.interiors.image}}" alt="">
+		<i class="flaticon-151-reading-glasses"></i>
+	</a>
+	{% if house.piscine.image.url != "" %}
+	<a href="{{house.piscince.image.url}}" class="img-popup-gallery">
+		<img src="{{house.piscince.image.url}}" alt="">
+		<i class="flaticon-151-reading-glasses"></i>
+	</a>
+	{% endif %}
+	<a href="{{house.vues.image.url}}" class="img-popup-gallery">
+			<img src="{{house.vues.image.url}}" alt="">
+			<i class="flaticon-151-reading-glasses"></i>
+		</a>
+	
+</div>
+<!-- Property features slider end -->
+
+<!-- Property overview section-->
+<section class="property-overview-section spad pb-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="property-overview-text">
+					<h4>GENERAL OVERVIEW</h4>
+					<p>{{house.oreviews|safe}}</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="property-overview-text">
+					<h4>GENERAL OVERVIEW</h4>
+					<ul>  
+						{% for special in house.specification.all %}
+						<li>{{special.titre}}</li>
+						{% endfor %}
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid pt-5">
+		<div class="row">
+			<div class="col-lg-6 p-0">
+				{% for m in back %}
+				{% if m.id != house.id %}
+				{% if forloop.counter == 1 %}
+				<img src="{{m.image_principale.url}}" alt="">
+			</div>
+			<div class="col-lg-6 p-0 d-flex align-items-center justify-content-center">
+				<div class="property-text-warp">
+					<div class="property-overview-text">
+						<h4>GENERAL OVERVIEW</h4>
+						<p>{{m.description}}</p>
+						<a href="{% url 'property' m.id %}" class="site-btn">MORE INFO</a>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+			{% for m in back %}
+			{% if m.id != house.id %}
+			{% if forloop.counter == 2 %}
+			<div class="col-lg-6 p-0 d-flex align-items-center justify-content-center order-2 order-lg-1">
+				<div class="property-text-warp">
+					<div class="property-overview-text">
+						<h4>GENERAL OVERVIEW</h4>
+						<p>{{m.description}}</p>
+						<a href="{% url 'property' m.id %}" class="site-btn">MORE INFO</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 p-0 order-1 order-lg-2">
+					<img src="{{m.image_principale.url}}" alt="">
+			</div>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- Property overview section end-->
+
+<!-- Call to action section -->
+<section class="call-to-action-section set-bg" data-setbg="/static/img/cta-bg.jpg">
+	<div class="container text-white text-center">
+			{% for t in text %}
+			{% if forloop.counter == 1 %}
+			<h2>{{t.text}} </h2>
+			{% endif %}
+			{% endfor %}
+			{% for i in info %}
+			{% if forloop.counter == 1 %}
+			<button class="site-btn sb-light sb-big">{{i.contact}}</button>
+			{% endif %}
+			{% endfor %}
+	</div>
+</section>
+<!-- Call to action section end-->
+
+            
+{% endblock content %}

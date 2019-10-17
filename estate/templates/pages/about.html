@@ -1,0 +1,151 @@
+
+	
+	<!-- Page top section -->
+{% extends "bases/base_pages.html" %}
+{% block title %} {% endblock title %}
+{% block content %}
+ {% for b in image %} 
+ {% if forloop.counter == 1 %}          
+<section class="page-top-section set-bg" data-setbg="{{b.about.url}}">
+	{% endif %}
+	{% endfor %}
+	{% for b in about %} 
+ {% if forloop.counter == 1 %} 
+ 
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="page-top-text text-white">
+						<h2>About Us</h2>
+						<p>{{b.text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	{% endfor %}
+
+	
+		<div class="hero-social-warp">
+				<div class="hero-social">
+					{% for l in lien %}
+					{% if forloop.counter == 1 %}
+					<a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+					<a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+					<a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+					<a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+					<a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+	</section>
+	<!-- Page top section end -->
+
+	<!-- About section -->
+	<section class="about-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="about-text">
+						{% for b in about %} 
+						{% if forloop.counter == 1 %} 
+						<p>{{b.text_slide}}</p>
+						{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- About section end -->
+	
+	<!-- Milestone section end -->
+	<section class="milestone-section">
+		<div class="milestone-warp">
+			<div class="milestone">
+				{% for i in info %}
+				{% if forloop.counter == 1%}
+				<h2>{{i.residential}}</h2>
+				<h4>Residential  Developed</h4>
+			</div>
+			<div class="milestone">
+				<h2>{{i.homes}}</h2>
+				<h4>Homes Builded</h4>
+			</div>
+			<div class="milestone">
+				<h2>{{i.years}}</h2>
+				<h4>Years of Experience</h4>
+			</div>
+			<div class="milestone">
+				<h2>{{i.complains}}</h2>
+				<h4>Complains</h4>
+			</div>
+			<div class="milestone">
+				<h2>{{i.offices}}</h2>
+				<h4>Offices</h4>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</section>
+	<!-- Milestone section end -->
+
+
+	<!-- Team section -->
+	<section class="team-section">
+		<div class="container">
+			<div class="row">
+				{% for teams in team %}
+				{% if forloop.counter <= 4 %}
+				<div class="col-lg-6">
+					<div class="team-member">
+						<div class="member-pic">
+							<img src="{{teams.photo.url}}" alt="">
+							
+						</div>
+						<div class="member-info">
+							<h4>{{teams.nom}}</h4>
+							<h5>{{teams.poste.nom}}</h5>
+							<p>{{teams.descriptions}}</p>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Team section end -->
+
+	<!-- About box text -->
+	<div class="about-text-box-warp spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					{% for a in about %}
+					{% if forloop.counter == 1 %}
+					<div class="design-text">
+						<h4>JOIN OUR TEAM </h4>
+						<p>{{a.join}} </p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="design-text">
+						<h4>WORK REMOTE</h4>
+						<p>{{a.work}} </p>				
+						</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- About box text end -->
+	
+	<!-- Footer section -->
+
+{% endblock content %}
+            

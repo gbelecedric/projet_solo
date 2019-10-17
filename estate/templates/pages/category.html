@@ -1,0 +1,99 @@
+{% extends "bases/base_pages.html" %}
+{% block title %} Categorie {% endblock title %}
+{% block content %}
+<div id="app">
+<section class="page-top-section set-bg" data-setbg="{{cate.image.url}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="page-top-text text-white">
+                    <h2>Categorie</h2>
+                    <p>{{cate.titre}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-social-warp">
+            {% for l in lien %}
+            {% if forloop.counter == 1 %}
+            <a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+            <a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+            <a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+            <a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+            <a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+            {% endif %}
+            {% endfor %}
+    </div>
+</section>
+<!-- Page top section end -->
+
+<!-- Blog section-->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-categorise">
+                        {% for cat in categorie %}
+                        <a href="{% url 'category' cat.id %}">{{cat.titre}}</a>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <form class="blog-search">
+                    <input type="text" placeholder="Search in News Articles">
+                    <button><img src="/static/img/search.png" alt=""></button>
+                </form>
+            </div>
+        </div>
+        
+    
+    {% for art in article %}
+    {% if forloop.counter <= 3 %}
+    <div class="blog-item">
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="blog-thumb set-bg" data-setbg="{{art.photo.url}}"></div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="blog-content">
+                    <div class="blog-date">{{art.date_add|date:"d F Y"}}</div>
+                    <h2>{{art.titre}}</h2>
+                    <p>{{art.description}}</p>
+                    <a href="{% url 'details' art.id %}" class="site-btn">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+        
+        {% if verif != 0  %}
+        <div class="text-center pt-4">
+            <button v-if="close" v-on:click="loadmor" class="site-btn sb-solid">LOAD MORE</button>
+        </div>
+        {%else %}
+        <hr>
+        {% endif %}
+        {% for art in article %}
+        {% if forloop.counter >= 4 %}
+        <div  v-if="open" class="blog-item">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="blog-thumb set-bg" data-setbg="{{art.photo.url}}"></div>
+                </div>
+                <div class="col-lg-8 col-md-7">
+                    <div class="blog-content">
+                        <div class="blog-date">{{art.date_add|date:"d F Y"}}</div>
+                        <h2>{{art.titre}}</h2>
+                        <p>{{art.description}}</p>
+                        <a href="{% url 'details' art.id %}" class="site-btn">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+</div>
+{% endblock content %}

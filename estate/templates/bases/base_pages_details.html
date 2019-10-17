@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Real Estate | {% block title %} {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <link href="/static/img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Sarabun:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/static/css/flaticon.css"/>
+	<link rel="stylesheet" href="/static/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="/static/css/owl.carousel.min.css"/>
+
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="/static/css/style.css"/>
+
+
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css3/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css3/animate.css">
+    
+    <link rel="stylesheet" href="/static/css3/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css3/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/static/css3/magnific-popup.css">
+
+    <link rel="stylesheet" href="/static/css3/aos.css">
+
+    <link rel="stylesheet" href="/static/css3/ionicons.min.css">
+
+    <link rel="stylesheet" href="/static/css3/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/static/css3/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/static/css3/flaticon.css">
+    <link rel="stylesheet" href="/static/css3/icomoon.css">
+	<link rel="stylesheet" href="/static/css3/style.css">
+	<style>
+			.lds-dual-ring {
+				display: inline-block;
+				width: 64px;
+				height: 64px;
+				}
+				.lds-dual-ring:after {
+				content: " ";
+				display: block;
+				width: 46px;
+				height: 46px;
+				margin: 1px;
+				border-radius: 50%;
+				border: 5px solid #fff;
+				border-color: #631515 transparent rgb(46, 23, 23) transparent;
+				animation: lds-dual-ring 1.2s linear infinite;
+				}
+				@keyframes lds-dual-ring {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+				}
+				.btn-primary.focus, .btn-primary:focus,.btn-primary:active,
+				textarea:focus, 
+				textarea.form-control:focus, 
+				input.form-control:focus, 
+				input[type=text]:focus, 
+				input[type=password]:focus, 
+				input[type=email]:focus, 
+				input[type=number]:focus, 
+				[type=text].form-control:focus, 
+				[type=password].form-control:focus, 
+				[type=email].form-control:focus, 
+				[type=tel].form-control:focus, 
+				[contenteditable].form-control:focus {
+				box-shadow: inset 0 -1px 0 #ddd;
+				}
+			.lds-spinner {
+				color: official;
+				display: inline-block;
+				position: relative;
+				width: 64px;
+				height: 64px;
+			  }
+			  .lds-spinner div {
+				transform-origin: 32px 32px;
+				animation: lds-spinner 1.2s linear infinite;
+			  }
+			  .lds-spinner div:after {
+				content: " ";
+				display: block;
+				position: absolute;
+				top: 3px;
+				left: 29px;
+				width: 5px;
+				height: 14px;
+				border-radius: 20%;
+				background: #fff;
+			  }
+			  .lds-spinner div:nth-child(1) {
+				transform: rotate(0deg);
+				animation-delay: -1.1s;
+			  }
+			  .lds-spinner div:nth-child(2) {
+				transform: rotate(30deg);
+				animation-delay: -1s;
+			  }
+			  .lds-spinner div:nth-child(3) {
+				transform: rotate(60deg);
+				animation-delay: -0.9s;
+			  }
+			  .lds-spinner div:nth-child(4) {
+				transform: rotate(90deg);
+				animation-delay: -0.8s;
+			  }
+			  .lds-spinner div:nth-child(5) {
+				transform: rotate(120deg);
+				animation-delay: -0.7s;
+			  }
+			  .lds-spinner div:nth-child(6) {
+				transform: rotate(150deg);
+				animation-delay: -0.6s;
+			  }
+			  .lds-spinner div:nth-child(7) {
+				transform: rotate(180deg);
+				animation-delay: -0.5s;
+			  }
+			  .lds-spinner div:nth-child(8) {
+				transform: rotate(210deg);
+				animation-delay: -0.4s;
+			  }
+			  .lds-spinner div:nth-child(9) {
+				transform: rotate(240deg);
+				animation-delay: -0.3s;
+			  }
+			  .lds-spinner div:nth-child(10) {
+				transform: rotate(270deg);
+				animation-delay: -0.2s;
+			  }
+			  .lds-spinner div:nth-child(11) {
+				transform: rotate(300deg);
+				animation-delay: -0.1s;
+			  }
+			  .lds-spinner div:nth-child(12) {
+				transform: rotate(330deg);
+				animation-delay: 0s;
+			  }
+			  @keyframes lds-spinner {
+				0% {
+				  opacity: 1;
+				}
+				100% {
+				  opacity: 0;
+				}
+			  }
+			  
+	</style>
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<!-- logo -->
+		<a href="{% url 'home' %}" class="site-logo">
+			<img src="/static/img/logo.png" alt="">
+		</a>
+		<div class="nav-switch">
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="container">
+			<ul class="main-menu">
+				<li><a href=" {% url 'home' %} ">Home</a></li>
+				<li><a href=" {% url 'about' %} ">About Us</a></li>
+			
+				<li><a href=" {% url 'developments' %} ">Developments</a></li>
+				<li><a href=" {% url 'blog' %} ">News</a></li>
+				<li><a href=" {% url 'contact' %} ">Contact</a></li>
+			</ul>
+		</div>
+	</header>
+    
+    <!-- END nav -->
+    
+    
+    {% block nan %}
+        
+    {% endblock nan %}
+        
+
+    <footer class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-2 col-sm-12">
+					<div class="footer-widget">
+						<img src="/static/img/log-color.png" alt="">
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-4">
+					<div class="footer-widget">
+						<h5>COMPANY</h5>
+						<ul>
+							<li><a href="{% url 'about' %}">About Us</a></li>
+							<li><a href="">Offices</a></li>
+							<li><a href=" {% url 'contact' %} ">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-4">
+					<div class="footer-widget">
+						<h5>LEGAL</h5>
+						<ul>
+							<li><a href="">Documents</a></li>
+							<li><a href="">How to buy a house</a></li>
+							<li><a href="">Terms & Condition</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-4">
+					<div class="footer-widget">
+						<h5>SOCIAL</h5>
+						<div class="footer-social">
+							<a href=""><i class="fa fa-facebook"></i></a>
+							<a href=""><i class="fa fa-linkedin"></i></a>
+							<a href=""><i class="fa fa-twitter"></i></a>
+							<a href=""><i class="fa fa-youtube-play"></i></a>
+							<a href=""><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+		</div>
+	</footer>
+	<!-- Footer section end-->
+  
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<script src="/static/js3/jquery.min.js"></script>
+<script src="/static/js3/jquery-migrate-3.0.1.min.js"></script>
+<script src="/static/js3/popper.min.js"></script>
+<script src="/static/js3/bootstrap.min.js"></script>
+<script src="/static/js3/jquery.easing.1.3.js"></script>
+<script src="/static/js3/jquery.waypoints.min.js"></script>
+<script src="/static/js3/jquery.stellar.min.js"></script>
+<script src="/static/js3/owl.carousel.min.js"></script>
+<script src="/static/js3/jquery.magnific-popup.min.js"></script>
+<script src="/static/js3/aos.js"></script>
+<script src="/static/js3/jquery.animateNumber.min.js"></script>
+<script src="/static/js3/bootstrap-datepicker.js"></script>
+<script src="/static/js3/jquery.timepicker.min.js"></script>
+<script src="/static/js3/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/static/js3/google-map.js"></script>
+<script src="/static/js3/main.js"></script>
+<!--====== Javascripts & Jquery ======-->
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/ml5@0.3.1/dist/ml5.min.js"></script>
+
+
+<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				close : true,
+				open : false,
+				login:true,
+				register : false,
+				loader : false,
+	           
+				username: '',
+				message: '',
+				email: '',
+				
+				website: '',
+			    error:false,
+				isSuccess:false,
+				
+				reponse:'',
+				result:'',
+				showPreview: false,
+				imagePreview: '',
+				
+			   
+			},
+			delimiters:["${", "}"],
+			methods: {
+				loadmor: function () {
+					this.close = false
+					this.open = true
+				},
+				affichelogin: function () {
+				this.login = true
+				this.register = false
+				},
+				afficheregister: function () {
+					this.register = true
+					this.login = false
+				},
+				// formulaire formdata avec une image
+				submitFile: function() {
+				  this.loader=true
+				  let formData = new FormData();
+				  formData.append('file', this.file);
+				  formData.append('username', this.username);
+				  formData.append('message', this.message);
+				  formData.append('email', this.email);
+				  formData.append('website', this.website);
+				  
+				 
+				  
+				  axios.defaults.xsrfCookieName = 'csrftoken'
+				  axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+				  axios.post('http://127.0.0.1:8888/blog/postimage/{{ article.id }}',
+					  formData, this.id,
+					  {
+						  headers: {
+							  
+							  'Content-Type': 'multipart/form-data',
+						  }
+				  }).then((response) => {
+					  console.log(response.data);
+					  this.loader=false
+					  this.isregister = false;
+					  console.log(response.data.succes);
+					  this.result = response.data;
+					  console.log(this.result.succes);
+					  if(response.data.success){
+						this.isSuccess=true
+						this.error = false
+						this.file=""
+						this.email=""
+						this.message=""
+						this.username=""
+						this.website=""
+						this.reponse=response.data.message
+					}
+					else{
+						this.error = true
+						this.isSuccess=false
+						this.file=""
+						this.email=""
+						this.message=""
+						this.username=""
+						this.website=""
+						this.reponse=response.data.message
+					}
+					  
+				  })
+				  .catch((err) => {
+					  console.log(err);
+					  this.loader=false
+				  })
+			  },
+			  handleFileUploaded: function() {
+				  this.file = this.$refs.file.files[0];
+				  // AI
+				  let reader  = new FileReader();
+				  reader.addEventListener("load", function () {
+					this.showPreview = true;
+					this.imagePreview = reader.result;
+				}.bind(this), false);
+				/*
+				Check to see if the file is not empty.
+				*/
+				if( this.file ){
+				/*
+					Ensure the file is an image file.
+				*/
+					if ( /\.(jpe?g|png|gif)$/i.test( this.file.name ) ) {
+						/*
+						Fire the readAsDataURL method which will read the file in and
+						upon completion fire a 'load' event which we will listen to and
+						display the image in the preview.
+						*/
+						reader.readAsDataURL( this.file );
+						const classifier = ml5.imageClassifier('MobileNet', modelLoaded);
+						// When the model is loaded
+						function modelLoaded() {
+							console.log('Model Loaded!');
+							}
+							// Make a prediction with a selected image
+							classifier.classify(document.getElementById('myimg'), function(err, results) {
+							this.label = results[0].label
+							console.log(results);
+							
+						});
+					}
+				}
+			},
+			//init(){
+			 //   this.name = this.username = this.email = this.phone = this.file = ""
+		   // },
+		   // formulaire postdata sans uploader une image
+				senduser: function(){
+					this.loader=true
+					axios.defaults.xsrfCookieName = 'csrftoken'
+					axios.defaults.xsrfHeaderName = "X-CSRFToken"
+					axios.post('http://127.0.0.1:8000/post', {
+						name: '' + this.name,
+						username: '' + this.username,
+						email: '' + this.email,
+						password: '' + this.password,
+						repassword: '' + this.repassword,
+						phone:'' +this.phone,
+						}).then(response => {
+							this.loader=false
+							console.log(response) 
+							if(response.data.success){
+								this.success=true
+								this.error=false
+								this.messageRes=response.data.message
+							}
+							else{
+								this.error=true
+								this.succes=false
+								this.messageRes=response.data.message
+							}
+							
+						})
+						.catch((err) => {
+							this.loarder=false
+							console.log(err);
+							
+						})
+				
+			}
+				
+				
+				
+			}
+			
+		})
+</script>
+
+
+<!----endscripts-->
+
+ 
+    
+</body>
+</html>

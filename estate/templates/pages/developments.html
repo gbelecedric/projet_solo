@@ -1,0 +1,107 @@
+{% extends "bases/base_pages.html" %}
+{% block title %} {% endblock title %}
+{% block content %}
+<!-- Page top section -->
+<div id="app">
+{% for b in image %} 
+ {% if forloop.counter == 1 %}          
+<section class="page-top-section set-bg" data-setbg="{{b.develop.url}}">
+	{% endif %}
+	{% endfor %}
+
+	{% for b in about %} 
+ {% if forloop.counter == 1 %} 
+ 
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="page-top-text text-white">
+						<h2>Our Developments</h2>
+						<p>{{b.text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	{% endfor %}
+	<div class="hero-social-warp">
+		<div class="hero-social">
+				{% for l in lien %}
+				{% if forloop.counter == 1 %}
+				<a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+				<a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+				<a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+				<a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+				<a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+				{% endif %}
+				{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- Page top section end -->
+
+<!-- Developments section-->
+<section class="developments-section spad">
+	<div class="container">
+		<div class="row">
+			{% for m in house %}
+			{% if forloop.counter <= 6 %}
+			<div class="col-lg-4 col-md-6">
+				<div class="development-box">
+					<img src="{{m.image_principale.url}}" alt="">
+					<div class="dev-text">
+						<h4>{{m.nom}}</h4>
+						<h5>{{m.lieu}}</h5>
+						<p>{{m.short}}</p>
+						<div class="dev-price">
+							<span>from</span>
+							<h4>-${{m.price}}</h4>
+						</div>
+						{% if m.comming and m.solde == False %}
+						<a href="{% url 'property' m.id %}" class="site-btn">MORE INFO</a>
+						{% elif m.solde == True %}
+						<a href="{% url 'property' m.id %}"> <button class="site-btn sb-solid">SOLD OUT</button></a>
+						{% elif m.comming == True %}
+						<button class="site-btn sb-fade">COMING SOON</button>
+						{% else %}
+						<a href="{% url 'property' m.id %}" class="site-btn">MORE INFO</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endfor %}
+			
+		</div>
+	</div>
+</section>
+<!-- Developments section end-->
+
+<!-- Subscribe section -->
+<section class="subscribe-section spad">
+	<div class="container">
+		<div class="subscribe-text text-center">
+			{% for d in dev %}
+			{% if forloop.counter == 1 %}
+			<h2>{{d.titre}}</h2>
+			<p>{{d.text_slide}} </p>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div v-if='isSuccesstwo' class="alert alert-success" role="alert">
+				${ reponsetwo }
+			</div>
+			<div v-if='errortwo' class="alert alert-danger" role="alert">
+				${ reponsetwo }
+			</div>
+		<form class="subscribe-form">
+			<input v-model="emailtwo" type="text" placeholder="Leave us your email address">
+			<button v-on:click="sendemail" v-if="!loadertwo" class="site-btn">SUBSCRIBE NOW</button> 
+			<div v-if="loadertwo" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+			
+		</form>
+	</div>
+</section>
+<!-- Subscribe section end-->
+</div>
+{% endblock content %}

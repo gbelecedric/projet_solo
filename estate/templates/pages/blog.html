@@ -1,0 +1,119 @@
+{% extends "bases/base_pages.html" %}
+{% block title %} {% endblock title %}
+{% block content %}
+<div id="app">
+        {% for b in image %} 
+        {% if forloop.counter == 1 %}          
+       <section class="page-top-section set-bg" data-setbg="{{b.new.url}}">
+           {% endif %}
+           {% endfor %}
+           {% for b in blog %} 
+           {% if forloop.counter == 1 %} 
+           
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-5">
+                              <div class="page-top-text text-white">
+                                  <h2>BLOG</h2>
+                                  <p>{{b.text}}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+    <div class="hero-social-warp">
+        <div class="hero-social">
+                {% for l in lien %}
+				{% if forloop.counter == 1 %}
+				<a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+				<a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+				<a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+				<a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+				<a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+				{% endif %}
+				{% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Page top section end -->
+
+<!-- Blog section-->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-categorise">
+                    {% for cat in categorie %}
+                    <a href="{% url 'category' cat.id %}">{{cat.titre}}</a>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                    <form action="#" class="search-form" > {% csrf_token %}
+                        <div class="form-group">
+                        <span class="icon"><img src="https://img.icons8.com/material-two-tone/24/000000/search.png"></span>
+                        <input type="text" class="form-control" placeholder="Type a keyword and hit enter" name="cate">
+                        </div>
+                    </form>
+                    
+            </div>
+        </div>
+        {% if article %}
+        {% for art in article %}
+        {% if forloop.counter <= 3 %}
+        <div class="blog-item">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="blog-thumb set-bg" data-setbg="{{art.photo.url}}"></div>
+                </div>
+                <div class="col-lg-8 col-md-7">
+                    <div class="blog-content">
+                        <div class="blog-date">{{art.date_add|date:"d F Y"}}</div>
+                        <h2>{{art.titre}}</h2>
+                        <p>{{art.description}}</p>
+                        <a href="{% url 'details' art.id %}" class="site-btn">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+
+        <h2>Aucun Article Trouver </h2>
+        {% endif %}
+        {% if verif != 0  %}
+        <div class="text-center pt-4">
+            <button v-on:click="loadmor" v-if="close" class="site-btn sb-solid">LOAD MORE</button>
+        </div>
+        {%else %}
+    
+        {% endif %}
+        {% for art in article %}
+        {% if forloop.counter >= 4 %}
+        <div  v-if="open">
+        <div class="blog-item">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="blog-thumb set-bg" data-setbg="{{art.photo.url}}"></div>
+                </div>
+                <div class="col-lg-8 col-md-7">
+                    <div class="blog-content">
+                        <div class="blog-date">{{art.date_add|date:"d F Y"}}</div>
+                        <h2>{{art.titre}}</h2>
+                        <p>{{art.description}}</p>
+                        <a href="{% url 'details' art.id %}" class="site-btn">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+</div>
+{% endblock content %}

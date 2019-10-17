@@ -1,0 +1,189 @@
+{% extends 'bases/base_pages_details.html' %}
+
+{% block title %} {% endblock title %}
+{% block nan %}
+<div id="app">   
+        {% for b in image %} 
+        {% if forloop.counter == 1 %}          
+       <section class="page-top-section set-bg" data-setbg="{{b.details.url}}">
+           {% endif %}
+           {% endfor %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5">
+				<div class="page-top-text text-white">
+					<h2>Details Page</h2>
+					<p>{{article.titre}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hero-social-warp">
+		<div class="hero-social">
+                {% for l in lien %}
+				{% if forloop.counter == 1 %}
+				<a href="{{l.facebook}}"><i class="fa fa-facebook"></i></a>
+				<a href="{{l.linkedin}}"><i class="fa fa-linkedin"></i></a>
+				<a href="{{l.twitter}}"><i class="fa fa-twitter"></i></a>
+				<a href="{{l.youtube}}"><i class="fa fa-youtube-play"></i></a>
+				<a href="{{l.instagrame}}"><i class="fa fa-instagram"></i></a>
+				{% endif %}
+				{% endfor %}
+		</div>
+	</div>
+</section>
+         
+<section class="ftco-section">
+        <div class="container">
+            <div class="row">
+    <div class="col-lg-8 ftco-animate">
+        <h2 class="mb-3">{{article.titre}}</h2>
+        <p>{{article.contenu|safe}}</p>
+    
+        <p>
+        <img src="{{article.photo.url}}" alt="" class="img-fluid">
+        </p>
+        <p>{{article.description}}</p>
+      
+        <div class="tag-widget post-tag-container mb-5 mt-5">
+        <div class="tagcloud">
+            {% for tags in tag %}
+            <a href="#" class="tag-cloud-link">{{tags.nom}}</a>
+            {% endfor %}
+        </div>
+        </div>
+            
+        
+
+
+        <div class="pt-5 mt-5">
+            {% if comment.count <= 9 %}
+        <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">0{{comment.count}} Feedbacks</h3>
+        {% else %}
+        <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">{{comment.count}} Feedbacks</h3>
+        {% endif %}
+        <ul class="comment-list">
+        {% for com in comment %}
+        {% if forloop.counter <= 5 %}
+            <li class="comment">
+            <div class="vcard bio">
+                <img src="{{com.image.url}}" alt="Image placeholder">
+            </div>
+            <div class="comment-body">
+                <h3>{{com.username}}</h3>
+                <div class="meta mb-2"> {{com.date_add|date:"d F ,Y"}} </div>
+                <p>{{com.contenu}}</p>
+              
+            </div>
+
+           
+          {% endif %}
+            {% endfor %}
+        </ul>
+         
+      
+        
+      
+       
+        <!-- END comment-list -->
+      
+        <div class="comment-form-wrap pt-5">
+            <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">Leave a comment</h3>
+          
+            <img v-bind:src="imagePreview" v-show="showPreview" class="img-thumbnail" id="myimg" />
+            <div v-if='isSuccess' class="alert alert-success" role="alert">
+                    ${ reponse }
+                </div>
+                <div v-if='error' class="alert alert-danger" role="alert">
+                    ${ reponse }
+                </div>
+            <form  class="p-4 p-md-5 bg-light"> 
+            <div class="form-group">
+                <label for="name">Username *</label>
+                <input v-model="username" type="text" class="form-control"  >
+            </div>
+  
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input v-model="email" type="email" class="form-control"  >
+            </div>
+            <div class="form-group">
+                <label for="email">Image *</label>
+                <input type="file" v-on:change="handleFileUploaded()" id="file" ref="file" class="form-control" placeholder="Image">
+            </div>
+            <div class="form-group">
+                <label for="website">Website *</label>
+                <input v-model="website"  type="url" class="form-control"  >
+            </div>
+          
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea v-model="message"  id="message" cols="30" rows="10" class="form-control" name="message"></textarea>
+            </div>
+            <div class="form-group">
+                    <button v-on:click="submitFile" v-if="!loader" class="btn btn-primary"  type="button">Submit </button> <div v-if="loader" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+            </div>
+
+            </form>
+        </div>
+    </div>
+        </div>
+     <!-- .col-md-8 -->
+
+    <div class="col-lg-4 sidebar ftco-animate">
+        <div class="sidebar-box">
+        <form action="#" class="search-form" > {% csrf_token %}
+            <div class="form-group">
+            <span class="icon"><img src="https://img.icons8.com/material-two-tone/24/000000/search.png"></span>
+            <input type="text" class="form-control" placeholder="Type a keyword and hit enter" name="cate">
+            </div>
+        </form>
+        </div>
+    
+        <div class="sidebar-box ftco-animate">
+            <h3>Category</h3>
+        <ul class="categories">
+            {% if categorie %}
+            {% for cat in categorie %}
+            
+            <li><a href="{% url 'category' cat.id %}">{{cat.titre}}  <span>{{cat.categorie.count}}</span></a></li>
+            {% endfor %}
+            {% else %}
+            <p>Aucune categorie trouver</p>
+            {% endif %} 
+            
+        </ul>
+        </div>
+
+        
+
+        <div class="sidebar-box ftco-animate">
+        <h3>Tag Cloud</h3>
+        <ul class="tagcloud m-0 p-0">
+            {% for tags in alltag %}
+            <a href="#" class="tag-cloud-link">{{tags.nom}}</a>
+            {% endfor %}
+          
+        </ul>
+        </div>
+
+        <div class="sidebar-box ftco-animate">
+            <h3>Archives</h3>
+        <ul class="categories">
+            {% for arch in archive %}
+            <li><a href="#">{{arch.date_add|date:"F Y"}}<span>({{arch.categorie.count}})</span></a></li>
+            {% endfor %}
+            
+        </ul>
+        </div>
+
+    </div>
+        
+    </div><!-- END COL -->
+    </div>
+        
+    </section>
+</div>
+
+{% endblock nan %}
